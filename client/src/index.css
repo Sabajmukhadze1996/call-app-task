@@ -1,0 +1,23 @@
+html,
+body,
+.app-container,
+.app-content-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-content {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  border: 1px solid #b8b8b8;
+}
