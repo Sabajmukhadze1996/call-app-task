@@ -1,0 +1,83 @@
+.ant-form-item-label {
+  white-space: nowrap;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  padding-block: 2rem;
+  background-color: rgb(45, 43, 43);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.table-btns-container {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.add-user-btn {
+  background-color:  #007bff !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  margin-bottom: 20px;
+  padding-inline: 1.3rem;
+  display: block;
+  margin: 0  auto 20px;
+  width: 200px;
+}
+
+.add-user-btn:hover {
+  background-color: #0061c8 !important;
+  color: #fff !important;
+}
+
+
+.edit-user-btn {
+  background-color:  #1b9337 !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+
+.edit-user-btn:hover {
+  background-color:  #197c32 !important;
+  color: #fff !important;
+  box-shadow: 0px 0px 5px #c9c4c4;
+}
+
+.delete-user-btn {
+  background-color:  #dc3545 !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+
+.delete-user-btn:hover {
+  background-color:  #af2c39 !important;
+  color: #fff !important;
+  box-shadow: 0px 0px 5px #c9c4c4;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  .ant-form-item {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .ant-form-item-label {
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .ant-form-item-control {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+
+

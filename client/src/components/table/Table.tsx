@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { User } from "../../interfaces/User";
 import { UserFormValues } from "../../interfaces/UserFormValues";
 import axios from "axios";
+import "./table.css";
 
 const { Option } = Select;
 
@@ -117,11 +118,11 @@ const UserTable: React.FC = () => {
       title: "Action",
       key: "action",
       render: (text: string, user: User) => (
-        <span>
-          <Button type="link" onClick={() => handleEdit(user)}>
+        <span className="table-btns-container">
+          <Button className="edit-user-btn" type="link" onClick={() => handleEdit(user)}>
             Edit
           </Button>
-          <Button type="link" onClick={() => handleDelete(user.id)}>
+          <Button className="delete-user-btn" type="link" onClick={() => handleDelete(user.id)}>
             Delete
           </Button>
         </span>
@@ -140,8 +141,8 @@ const UserTable: React.FC = () => {
           User deleted successfully
         </Modal>
       )}
-
-      <Button type="primary" onClick={handleAdd}>
+        <h1 className="dashboard-title">Users Dashboard</h1>
+      <Button className="add-user-btn" type="primary" onClick={handleAdd}>
         Add User
       </Button>
       <Table dataSource={users} columns={columns} rowKey="id" />
@@ -152,59 +153,66 @@ const UserTable: React.FC = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form form={form} initialValues={selectedUser}>
-          <Form.Item
-            name="name"
-            label="Name"
-            rules={[{ required: true, message: "Please enter name" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[
-              { required: true, message: "Please enter email" },
-              { type: "email", message: "Please enter a valid email" },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item name="gender" label="Gender">
-            <Select>
-              <Option value="male">Male</Option>
-              <Option value="female">Female</Option>
-              <Option value="other">Other</Option>
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="street"
-            label="Street"
-            rules={[{ required: true, message: "Please enter street" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="city"
-            label="City"
-            rules={[{ required: true, message: "Please enter city" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="phone"
-            label="Phone"
-            rules={[
-              { required: true, message: "Please enter phone number" },
-              {
-                pattern: /^\+?[0-9]+$/,
-                message: "Please enter a valid phone number",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+          <div className="form-row">
+        <Form form={form}  initialValues={selectedUser}>
+            <div className="form-col">
+              <Form.Item
+                name="name"
+                label="Name"
+                rules={[{ required: true, message: "Please enter name" }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="email"
+                label="Email"
+                rules={[
+                  { required: true, message: "Please enter email" },
+                  { type: "email", message: "Please enter a valid email" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item name="gender" label="Gender">
+                <Select>
+                  <Option value="male">Male</Option>
+                  <Option value="female">Female</Option>
+                  <Option value="other">Other</Option>
+                </Select>
+              </Form.Item>
+            </div>
+
+            <div className="form-col">
+              <Form.Item
+                name="street"
+                label="Street"
+                rules={[{ required: true, message: "Please enter street" }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="city"
+                label="City"
+                rules={[{ required: true, message: "Please enter city" }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="phone"
+                label="Phone"
+                rules={[
+                  { required: true, message: "Please enter phone number" },
+                  {
+                    pattern: /^\+?[0-9]+$/,
+                    message: "Please enter a valid phone number",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </div>
         </Form>
+          </div>
       </Modal>
     </>
   );
