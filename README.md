@@ -8,5 +8,5 @@ I used one directory (folder) where I placed two sides of the application, the c
 
 When we download this project, we need to install the corresponding Node modules, it is better to use npm install --legacy-peer-deps so that there are no conflicts in the versions of the libraries.
  Then run the command ( npm start ) in the terminal in both directories
----React will run locally at localhost:3000
+---React will run at localhost:3000
 ---Server - localhost:4000 - localhost:4000/users - the data of all existing users.
