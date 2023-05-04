@@ -6,6 +6,7 @@ import { UserFormValues } from "../../interfaces/UserFormValues";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./table.css";
+import Chart from "../chart/Chart";
 
 const { Option } = Select;
 
@@ -14,6 +15,8 @@ const UserTable: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<User | null | any>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isDeleteAlertVisible, setIsDeleteAlertVisible] = useState(false);
+
+
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -141,8 +144,13 @@ const UserTable: React.FC = () => {
 
   const navigate = useNavigate();
 
+
+
   return (
     <>
+    <div style={{display: "none"}}>
+    <Chart />
+    </div>
       {isDeleteAlertVisible && (
         <Modal
           title="Success"
@@ -238,194 +246,30 @@ const UserTable: React.FC = () => {
 
 export default UserTable;
 
-// import { useEffect, useState } from "react";
-// import { Table, Button, Modal, Form, Input, Select } from "antd";
-// import { ColumnsType } from "antd/es/table";
-// import axios from "axios";
-// import { User } from "../../types/User"
 
-// const { Option } = Select;
 
-// const columns: ColumnsType<User> = [
-//   {
-//     title: "ID",
-//     dataIndex: "id",
-//     key: "id",
-//   },
-//   {
-//     title: "Name",
-//     dataIndex: "name",
-//     key: "name",
-//   },
-//   {
-//     title: "Email",
-//     dataIndex: "email",
-//     key: "email",
-//   },
-//   {
-//     title: "Gender",
-//     dataIndex: "gender",
-//     key: "gender",
-//   },
-//   {
-//     title: "Address",
-//     dataIndex: ["address", "street"],
-//     key: "address",
-//     render: (text: string, record: User) => (
-//       <span>
-//         {record.address.street}, {record.address.city}
-//       </span>
-//     ),
-//   },
-//   {
-//     title: "Phone",
-//     dataIndex: "phone",
-//     key: "phone",
-//   },
-//   {
-//     title: "Actions",
-//     key: "actions",
-//     render: (text: string, record: User) => (
-//       <span>
-//         <Button type="primary" danger onClick={() => handleDelete(record.id)}>
-//           Delete
-//         </Button>
-//         <Button type="primary" onClick={() => handleEdit(record)}>
-//           Edit
-//         </Button>
-//       </span>
-//     ),
-//   },
-// ];
 
-// const UsersTable = () => {
-//   const [data, setData] = useState<User[]>([]);
-//   const [isModalVisible, setIsModalVisible] = useState(false);
-//   const [editingUser, setEditingUser] = useState<User | undefined>();
-//   const [form] = Form.useForm();
 
-//   const handleEdit = (user: User) => {
-//     setEditingUser(user);
-//     form.setFieldsValue(user);
-//     setIsModalVisible(true);
-//   };
 
-//   const handleSave = () => {
-//     form.validateFields().then((values) => {
-//       if (editingUser) {
-//         axios
-//           .put(`http://localhost:4000/users/${editingUser.id}`, values)
-//           .then(() => {
-//             setData(
-//               data.map((user) =>
-//                 user.id === editingUser.id
-//                   ? { ...editingUser, ...values }
-//                   : user
-//               )
-//             );
-//             setIsModalVisible(false);
-//           });
-//       } else {
-//         axios.post(`http://localhost:4000/users`, values).then((response) => {
-//           setData([...data, response.data]);
-//           setIsModalVisible(false);
-//         });
-//       }
-//       form.resetFields();
-//       setEditingUser(undefined);
-//     });
-//   };
 
-//   useEffect(() => {
-//     axios.get("http://localhost:4000/users").then((response) => {
-//       setData(response.data);
-//     });
-//   }, []);
 
-//   return (
-//     <>
-//       <Button type="primary" onClick={() => setIsModalVisible(true)}>
-//         Add User
-//       </Button>
-//       <Table dataSource={data} columns={columns} />
 
-//       <Modal
-//         title={editingUser ? "Edit User" : "Add User"}
-//         open={isModalVisible}
-//         onCancel={() => {
-//           setIsModalVisible(false);
-//           form.resetFields();
-//           setEditingUser(undefined);
-//         }}
-//         onOk={handleSave}
-//       >
-//         <Form form={form} layout="vertical">
-//           <Form.Item
-//             label="Name"
-//             name="name"
-//             rules={[{ required: true, message: "Please enter name" }]}
-//           >
-//             <Input />
-//           </Form.Item>
-//           <Form.Item
-//             label="Email"
-//             name="email"
-//             rules={[
-//               { required: true, message: "Please enter email" },
-//               { type: "email", message: "Please enter a valid email" },
-//             ]}
-//           >
-//             <Input />
-//           </Form.Item>
-//           <Form.Item
-//             label="Phone Number"
-//             name="phone"
-//             rules={[
-//               { required: true, message: "Please enter phone number" },
-//               {
-//                 pattern: /^[0-9]+$/,
-//                 message: "Please enter a valid phone number",
-//               },
-//             ]}
-//           >
-//             <Input />
-//           </Form.Item>
-//           <Form.Item
-//             label="Gender"
-//             name="gender"
-//             rules={[{ required: true, message: "Please select gender" }]}
-//           >
-//             <Select>
-//               <Option value="male">Male</Option>
-//               <Option value="female">Female</Option>
-//             </Select>
-//           </Form.Item>
-//           <Form.Item label="Street" name={["address", "street"]}>
-//             <Input />
-//           </Form.Item>
-//           <Form.Item label="City" name={["address", "city"]}>
-//             <Input />
-//           </Form.Item>
-//         </Form>
-//       </Modal>
-//     </>
-//   );
-// };
 
-// const handleDelete = (id: number) => {
-//   axios.delete(`http://localhost:4000/users/${id}`).then((user: any) => {
-//     return setData((prevData: any) =>
-//       prevData.filter((user: User) => user.id !== id)
-//     );
-//   });
-// };
 
-// function setData(arg0: (prevData: any) => any): any {
-//   return window.location.reload(), alert("user deleted successfully");
-// }
 
-// function handleEdit(record: User): void {
-//   throw new Error("Function not implemented.");
-// }
 
-// export default UsersTable;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
