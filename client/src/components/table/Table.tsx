@@ -6,7 +6,6 @@ import { UserFormValues } from "../../interfaces/UserFormValues";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./table.css";
-import Chart from "../chart/Chart";
 
 const { Option } = Select;
 
@@ -15,7 +14,6 @@ const UserTable: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<User | null | any>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isDeleteAlertVisible, setIsDeleteAlertVisible] = useState(false);
-
 
   const [form] = Form.useForm();
 
@@ -144,13 +142,8 @@ const UserTable: React.FC = () => {
 
   const navigate = useNavigate();
 
-
-
   return (
     <>
-    <div style={{display: "none"}}>
-    <Chart />
-    </div>
       {isDeleteAlertVisible && (
         <Modal
           title="Success"
@@ -245,31 +238,3 @@ const UserTable: React.FC = () => {
 };
 
 export default UserTable;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

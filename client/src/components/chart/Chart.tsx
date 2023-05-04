@@ -2,21 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Pie } from "@ant-design/charts";
 import styled from "styled-components";
 import axios from "axios";
+import { PieChartData } from "../../interfaces/PieChartData";
+import "./chart.css";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom"
 
 const Wrapper = styled.div`
   margin: 64px 32px;
-  padding-right: 300px;
+  padding-right: 200px;
 `;
-
-type DataType = string;
-
-interface PieChartData {
-  type: DataType;
-  value: number;
-}
 
 const Chart = () => {
   const [data, setData] = useState<PieChartData[]>([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,16 +69,22 @@ const Chart = () => {
         },
         formatter: function formatter() {
           const total = data.reduce((sum, { value }) => sum + value, 0);
-          return `total\n${total}`;
+          return `total users\n${total}`;
         },
       },
     },
   };
 
   return (
-    <Wrapper>
-      <Pie {...config} />
-    </Wrapper>
+    <div className="chart-container">
+      <h1 className="users-chart-title">All Users data in the chart</h1>
+      <Button onClick={() => navigate("/")} className="users-chart-btn" type="primary">
+        Go back to Users Dashboard
+      </Button>
+      <Wrapper>
+        <Pie {...config} />
+      </Wrapper>
+    </div>
   );
 };
 

@@ -4,7 +4,6 @@ body,
 .app-content-container {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 .app-content-container {
@@ -16,9 +15,6 @@ body,
 
 .app-content {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   min-height: 100vh;
-  overflow-x: hidden;
-  border: 1px solid #b8b8b8;
-  padding-top: 100px;
 }
