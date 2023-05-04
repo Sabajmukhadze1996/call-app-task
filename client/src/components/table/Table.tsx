@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { User } from "../../interfaces/User";
 import { UserFormValues } from "../../interfaces/UserFormValues";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./table.css";
 
 const { Option } = Select;
@@ -119,16 +120,26 @@ const UserTable: React.FC = () => {
       key: "action",
       render: (text: string, user: User) => (
         <span className="table-btns-container">
-          <Button className="edit-user-btn" type="link" onClick={() => handleEdit(user)}>
+          <Button
+            className="edit-user-btn"
+            type="link"
+            onClick={() => handleEdit(user)}
+          >
             Edit
           </Button>
-          <Button className="delete-user-btn" type="link" onClick={() => handleDelete(user.id)}>
+          <Button
+            className="delete-user-btn"
+            type="link"
+            onClick={() => handleDelete(user.id)}
+          >
             Delete
           </Button>
         </span>
       ),
     },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -141,9 +152,16 @@ const UserTable: React.FC = () => {
           User deleted successfully
         </Modal>
       )}
-        <h1 className="dashboard-title">Users Dashboard</h1>
+      <h1 className="dashboard-title">Users Dashboard</h1>
       <Button className="add-user-btn" type="primary" onClick={handleAdd}>
         Add User
+      </Button>
+      <Button
+        className="go-to-chart-btn"
+        type="primary"
+        onClick={() => navigate("/chart")}
+      >
+        Explore Chart
       </Button>
       <Table dataSource={users} columns={columns} rowKey="id" />
 
@@ -153,8 +171,8 @@ const UserTable: React.FC = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-          <div className="form-row">
-        <Form form={form}  initialValues={selectedUser}>
+        <div className="form-row">
+          <Form form={form} initialValues={selectedUser}>
             <div className="form-col">
               <Form.Item
                 name="name"
@@ -211,8 +229,8 @@ const UserTable: React.FC = () => {
                 <Input />
               </Form.Item>
             </div>
-        </Form>
-          </div>
+          </Form>
+        </div>
       </Modal>
     </>
   );

@@ -23,13 +23,26 @@
   cursor: pointer !important;
   margin-bottom: 20px;
   padding-inline: 1.3rem;
-  display: block;
-  margin: 0  auto 20px;
   width: 200px;
+  margin-left: 50px;
 }
 
 .add-user-btn:hover {
   background-color: #0061c8 !important;
+  color: #fff !important;
+}
+
+.go-to-chart-btn {
+  float: right;
+  margin-right: 50px;
+  background-color: #ff6347 !important;
+  height: 40px;
+  width: 300px;
+}
+
+
+.go-to-chart-btn:hover {
+  background-color: #e15840 !important;
   color: #fff !important;
 }
 
