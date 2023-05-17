@@ -10,7 +10,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-
 app.get("/users", (req, res) => {
     fs.readFile("./data.json", (err, data) => {
         if (err) throw err;
